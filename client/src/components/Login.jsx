@@ -6,10 +6,13 @@ const Login = () => {
 
   return (
     <div>
+        {/* <NavBar/> */}
+        <h1>Hi, welcome :)</h1>
         <form className='login-form'>
             <input placeholder='Username'/>
-            <input placeholder='Password'/>
+            <input type='password' placeholder='Password'/>
             <button onClick={()=>navigate("/home")}>login</button>
+            <button onClick={()=>navigate("/signup")}>create an account</button>
         </form>
     </div>
   )

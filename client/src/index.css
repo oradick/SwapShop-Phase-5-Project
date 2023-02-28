@@ -18,3 +18,19 @@ code {
   margin: 2rem;
   width: 33%;
 }
+
+.listing-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(auto, 1fr);
+  width: 100%;
+
+}
+
+.listing-card{
+  padding: 1rem
+}
+.listing-card img{
+  height: 100px;
+  width: 100px;
+}

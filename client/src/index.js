@@ -7,7 +7,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Login from './components/Login';
 import Signup from './components/Signup';
 import Home from './components/Home';
+import NewListingPage from './components/NewListingPage';
+import MyProfilePage from './components/MyProfilePage';
 
+
+//index.js
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +24,14 @@ const router = createBrowserRouter([
   {
     path: "/home",
     element: <Home />,
+  },
+  {
+    path: "/new-listing",
+    element: <NewListingPage />,
+  },
+  {
+    path: "/my-profile",
+    element: <MyProfilePage />,
   },
   {
     path: "/hello",
