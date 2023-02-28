@@ -1,20 +1,48 @@
 import './App.css';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import Login from './components/Login';
+import Signup from './components/Signup';
+import Home from './components/Home';
+import NewListingPage from './components/NewListingPage';
+import MyProfilePage from './components/MyProfilePage';
 import { useState, useEffect } from "react";
 
 function App() {
-  const [count, setCount] = useState(0)
 
-  useEffect(() =>{
-    fetch("/hello")
-    .then((r)=> r.json())
-    .then((data) => setCount(data.count));
-  }, []);
+  const router = createBrowserRouter([
+    {
+      path: "*",
+      element: <div><h1>404 NOT FOUND</h1></div>
+    },
+    {
+      path: "/",
+      element: <Login />,
+    },
+    {
+      path: "/signup",
+      element: <Signup />,
+    },
+    {
+      path: "/home",
+      element: <Home />,
+    },
+    {
+      path: "/new-listing",
+      element: <NewListingPage />,
+    },
+    {
+      path: "/my-profile",
+      element: <MyProfilePage />,
+    },
 
-  return (
-    <div className="App">
-      <h1>Page Count: {count}</h1>
+  ]);
+
+  return(
+    <div>
+      <RouterProvider router={router}/>  
     </div>
-  );
+  )
+
 }
 
 export default App;
