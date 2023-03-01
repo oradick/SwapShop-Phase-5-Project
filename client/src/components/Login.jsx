@@ -6,7 +6,7 @@ const Login = ({handleLogin}) => {
     const navigate = useNavigate();
     const [username, setUsername] = useState("")
     const [password, setPassword] = useState("")
-    
+    const [errors, setErrors] = useState([])
     
     //handles setting who the logged in user is finding if there is a user name 
     //and password that match on the user array
@@ -21,15 +21,16 @@ const Login = ({handleLogin}) => {
       })
         .then((response) => {
           if (response.ok) {
-            response.json()
-        .then((user) => {
-          handleLogin(user)
+            response.json().then((user) => 
+          handleLogin(user))
           navigate("/home")
           console.log({username})
-        })
+          }else {
+            response.json().then(json => setErrors(json.errors))
         }
-      })
-    }
+        })
+      }
+  
 
   return (
     <div>
@@ -48,6 +49,7 @@ const Login = ({handleLogin}) => {
             />
             <button onClick={handleSubmit}>login</button>
             <button onClick={()=>navigate("/signup")}>create an account</button>
+            {errors ? <div>{errors}</div> : null}
         </form>
     </div>
   )

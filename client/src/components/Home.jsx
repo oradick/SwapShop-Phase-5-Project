@@ -22,15 +22,17 @@ const Home = ({user}) => {
     <div>
       <NavBar />
       {user ? (
-        <div className='listing-container'>
+        <div>
           <h2>Welcome, {user.name}!</h2>
-          {listings.map((listing)=>(
-          <ListingCard key={listing.id} listing={listing}/>
-          ))}
-        </div>) : (
+          <div className='listing-container'>
+            {listings.map((listing)=>(
+            <ListingCard key={listing.id} listing={listing}/>
+             ))}
+          </div>
+        </div>
+      ) : (
           <h2>Please login</h2>
-        )
-        }
+      )}
     </div>
   )
 }

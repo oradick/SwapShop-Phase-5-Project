@@ -10,4 +10,6 @@ class User < ApplicationRecord
     class_name: :Listing
 
     has_many :comments
+
+    validates_presence_of :name, :username, :email, :password
 end

@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 function App() {
   const [user, setUser] = useState(null)
 
+  // useEffect for auto-login
   useEffect(() => {
     fetch("/me")
     .then((response) => {
@@ -39,7 +40,7 @@ function App() {
     },
     {
       path: "/signup",
-      element: <Signup />,
+      element: <Signup handleLogin={handleLogin}/>,
     },
     {
       path: "/home",
@@ -51,7 +52,7 @@ function App() {
     },
     {
       path: "/my-profile",
-      element: <MyProfilePage handleLogout={handleLogout}/>,
+      element: <MyProfilePage user={user} handleLogout={handleLogout}/>,
     },
 
   ]);
