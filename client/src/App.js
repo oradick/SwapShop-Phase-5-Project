@@ -8,6 +8,25 @@ import MyProfilePage from './components/MyProfilePage';
 import { useState, useEffect } from "react";
 
 function App() {
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    fetch("/me")
+    .then((response) => {
+      if (response.ok) {
+        response.json()
+        .then((user) => setUser(user))
+      }
+    })
+  }, [])
+
+  function handleLogin(user){
+    setUser(user);
+  }
+
+  function handleLogout(){
+    setUser(null);
+  }
 
   const router = createBrowserRouter([
     {
@@ -16,7 +35,7 @@ function App() {
     },
     {
       path: "/",
-      element: <Login />,
+      element: <Login handleLogin={handleLogin}/>,
     },
     {
       path: "/signup",
@@ -24,7 +43,7 @@ function App() {
     },
     {
       path: "/home",
-      element: <Home />,
+      element: <Home user={user}/>,
     },
     {
       path: "/new-listing",
@@ -32,7 +51,7 @@ function App() {
     },
     {
       path: "/my-profile",
-      element: <MyProfilePage />,
+      element: <MyProfilePage handleLogout={handleLogout}/>,
     },
 
   ]);

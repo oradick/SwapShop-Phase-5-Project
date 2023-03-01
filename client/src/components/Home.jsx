@@ -3,9 +3,8 @@ import NavBar from './NavBar';
 import { useState, useEffect } from "react"
 import ListingCard from './ListingCard';
 
-const Home = () => {
+const Home = ({user}) => {
   const [listings, setListings] = useState([])
-
   
   useEffect(() => {
     fetch("/listings")
@@ -22,10 +21,16 @@ const Home = () => {
   return (
     <div>
       <NavBar />
-      <div className='listing-container'>{listings.map((listing)=>(
-        <ListingCard key={listing.id} listing={listing}/>
-        ))}
-      </div>
+      {user ? (
+        <div className='listing-container'>
+          <h2>Welcome, {user.name}!</h2>
+          {listings.map((listing)=>(
+          <ListingCard key={listing.id} listing={listing}/>
+          ))}
+        </div>) : (
+          <h2>Please login</h2>
+        )
+        }
     </div>
   )
 }
