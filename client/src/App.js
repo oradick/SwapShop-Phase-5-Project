@@ -48,7 +48,7 @@ function App() {
     },
     {
       path: "/new-listing",
-      element: <NewListingPage />,
+      element: <NewListingPage user={user}/>,
     },
     {
       path: "/my-profile",

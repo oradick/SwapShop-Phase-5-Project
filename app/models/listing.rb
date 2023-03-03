@@ -3,4 +3,6 @@ class Listing < ApplicationRecord
     belongs_to :recipient, class_name: :User
 
     has_many :comments
+
+    validates_presence_of :creator, :recipient, :image, :description, :size, :keywords
 end
