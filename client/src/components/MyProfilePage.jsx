@@ -2,8 +2,9 @@ import React from 'react'
 import NavBar from './NavBar'
 import { useNavigate } from "react-router-dom"
 import  profpic  from "./assets/Screen Shot 2023-03-01 at 6.29.49 PM.png"
+import MyListings from './MyListings'
 
-const MyProfilePage = ({user, handleLogout}) => {
+const MyProfilePage = ({user, handleLogout, listings, setListings}) => {
     const navigate = useNavigate()
 
     const handleLogoutBtn = () => {
@@ -18,6 +19,7 @@ const MyProfilePage = ({user, handleLogout}) => {
       })
     }
 
+    
   return (
     <div>
         <NavBar />
@@ -31,6 +33,7 @@ const MyProfilePage = ({user, handleLogout}) => {
             <p>Email: {user.email}</p>
             <p>Password: **********</p>
           </div>
+          <MyListings user={user} listings={listings} setListings={setListings}/>
           <button onClick={handleLogoutBtn}>log out</button>
         </div>
         ) : (

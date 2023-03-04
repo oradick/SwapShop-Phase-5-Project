@@ -3,8 +3,8 @@ import NavBar from './NavBar';
 import { useState, useEffect } from "react"
 import ListingCard from './ListingCard';
 
-const Home = ({user}) => {
-  const [listings, setListings] = useState([])
+const Home = ({user, listings, setListings}) => {
+  // const [listings, setListings] = useState([])
   
   useEffect(() => {
     fetch("/listings")

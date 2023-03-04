@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom"
 import { useState } from "react"
 
 
-const NewListingPage = ({user}) => {
+const NewListingPage = ({user, listings, setListings}) => {
   const navigate = useNavigate()
 
   //states for New Listing form
@@ -33,6 +33,9 @@ const NewListingPage = ({user}) => {
     }),
   })
     .then(response => response.json())
+    .then((newListing)=> {
+      setListings([...listings, newListing])
+    })
     navigate("/home")
   }
 

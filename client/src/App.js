@@ -29,6 +29,20 @@ function App() {
     setUser(null);
   }
 
+  //fetch all listings
+  const [listings, setListings] = useState([])
+  
+  useEffect(() => {
+    fetch("/listings")
+    .then(response => response.json())
+    .then((data)=>{
+      setListings(data);
+    });
+  }, []);
+  
+  if (listings.length === 0) return null
+  console.log(listings)
+
   const router = createBrowserRouter([
     {
       path: "*",
@@ -44,15 +58,15 @@ function App() {
     },
     {
       path: "/home",
-      element: <Home user={user}/>,
+      element: <Home user={user} listings={listings} setListings={setListings}/>,
     },
     {
       path: "/new-listing",
-      element: <NewListingPage user={user}/>,
+      element: <NewListingPage user={user} listings={listings} setListings={setListings}/>,
     },
     {
       path: "/my-profile",
-      element: <MyProfilePage user={user} handleLogout={handleLogout}/>,
+      element: <MyProfilePage user={user} handleLogout={handleLogout} listings={listings} setListings={setListings}/>,
     },
 
   ]);
