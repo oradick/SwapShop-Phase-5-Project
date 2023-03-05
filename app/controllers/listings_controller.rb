@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-    skip_before_action :authorized, only: [:index, :create, :destroy]
+    skip_before_action :authorized, only: [:index, :create, :destroy, :update, :show]
     wrap_parameters format: :none
 
     def index
@@ -12,9 +12,14 @@ class ListingsController < ApplicationController
         render json: new_listing, status: :created
     end
 
-    def show
-        listing = Listing.find(params[:id])
-        render json: listing
+    def update
+        listing = Listing.find_by(id: params[:id])
+        if listing
+            listing.update!(listing_params)
+            render json: listing, status: :ok
+        else
+           render json: {error: "Listing not found"}, status: :not_found
+        end
     end
 
     def destroy
@@ -25,7 +30,11 @@ class ListingsController < ApplicationController
         else
             render json: { error: "Listing not found" }, status: :not_found
         end
+    end
 
+    def show
+        listing = Listing.find(params[:id])
+        render json: listing
     end
 
     def my_listings

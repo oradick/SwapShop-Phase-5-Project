@@ -1,10 +1,12 @@
 import React from 'react'
 import NavBar from './NavBar';
 import { useState, useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import ListingCard from './ListingCard';
 
 const Home = ({user, listings, setListings}) => {
   // const [listings, setListings] = useState([])
+  const navigate = useNavigate()
   
   useEffect(() => {
     fetch("/listings")
@@ -14,8 +16,10 @@ const Home = ({user, listings, setListings}) => {
     });
   }, []);
   
+ 
+
   if (listings.length === 0) return null
-  console.log(listings)
+  // console.log(listings)
   
 
   return (
@@ -26,12 +30,15 @@ const Home = ({user, listings, setListings}) => {
           <h2>Welcome, {user.name}!</h2>
           <div className='listing-container'>
             {listings.map((listing)=>(
-            <ListingCard key={listing.id} listing={listing}/>
+            <ListingCard key={listing.id} listing={listing} user={user}/>
              ))}
           </div>
         </div>
       ) : (
+        <div>
           <h2>Please login</h2>
+          <button onClick= {() => navigate("/")}>login</button>
+        </div>
       )}
     </div>
   )
