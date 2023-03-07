@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { Image, Card, CardBody, Button, Heading, Text, Badge, Divider, Stack, CardFooter  } from '@chakra-ui/react'
 
 
-const MyListings = ({user, listings, setListings}) => {
+const MyListings = ({user, listings}) => {
     const [myListings, setMyListings] = useState([])
   
     useEffect(() => {
@@ -43,23 +43,23 @@ const MyListings = ({user, listings, setListings}) => {
         <Heading marginLeft="1rem" size="md">{user.name}'s Listings</Heading>
         <div className='listing-container'>
         {myListings.map((myListing)=>(
-            <div className='listing-card'>
-            <Card  height="300px" className="listing-card" key={myListing.id}>
+            <div className='listing-card' key={myListing.id}>
+            <Card  height="400px" key={myListing.id}>
                 <CardBody>
                 {myListing.offer ? <Badge colorScheme="cyan">Offer</Badge> : <Badge colorScheme="purple">Request</Badge>}
-                <Image src={myListing.image} />
+                <Image height="180px" borderRadius='lg' src={myListing.image} />
                 <Heading size="md">{myListing.description}</Heading>
                 <Text>Size: {myListing.size}</Text>
                 <CardFooter>
                 <Stack margin="auto">
                 <Divider marginTop="5px"/>
                 <Button 
-                    width="100px" 
+                    width="100px"
+                    backgroundColor="#cdeafe" 
                     onClick={()=> handleDelete(myListing.id)}
                     >Delete
                 </Button>
                 </Stack>
-
                 </CardFooter>
                 </CardBody>
             </Card>

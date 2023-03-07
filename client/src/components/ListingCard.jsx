@@ -1,7 +1,10 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Image, Card, CardBody, CardFooter, Button, Heading, Text, Divider, Badge, Stack  } from '@chakra-ui/react'
 
 const ListingCard = ({user, listing}) => {
+  
+  const [unclaimed, setUnclaimed] = useState(true)
+
   const claim = (id, user) => {
     fetch((`/listings/${id}`), {
     method: "PATCH",
@@ -19,7 +22,10 @@ const ListingCard = ({user, listing}) => {
       })
     })
     .then((response) => response.json())
-    .then((claimedListing) => console.log(claimedListing.recipient.id))
+    .then((claimedListing) => {
+      setUnclaimed(!unclaimed)
+      console.log(claimedListing.recipient.id);
+    });
 
   }
 
@@ -30,7 +36,7 @@ const ListingCard = ({user, listing}) => {
       <Card height="400px">
         <CardBody>
       {listing.offer ? <Badge colorScheme="cyan">Offer</Badge> : <Badge colorScheme="purple">Request</Badge>}
-        <Image  height="180px" borderRadius='lg' src={listing.image} />
+        <Image  marginLeft="2rem"height="180px" borderRadius='lg' src={listing.image} />
         <Heading size='md'>{listing.description}</Heading>
         <Text>Size: {listing.size}</Text>
         <Text fontSize='sm'>Posted By: {listing.creator.name}</Text>
@@ -39,11 +45,21 @@ const ListingCard = ({user, listing}) => {
            <CardFooter>
             <Stack margin="auto">
             <Divider marginTop="5px"/>
+            { unclaimed ? (
             <Button 
-              width="100px" 
+              width="100px"
+              backgroundColor="#cdeafe" 
               onClick={()=> claim(listing.id, user.id)}
               >Claim Item
             </Button>
+            ) : (
+              <Button 
+              width="100px"
+              >Claimed
+            </Button>  
+            )
+
+            }
             </Stack>
          </CardFooter>
         }

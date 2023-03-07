@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-    skip_before_action :authorized, only: [:index, :create, :destroy, :update, :show]
+    skip_before_action :authorized, only: [:index, :create, :destroy, :update, :show, :my_listings, :listings_i_claimed]
     wrap_parameters format: :none
 
     def index
@@ -40,6 +40,12 @@ class ListingsController < ApplicationController
     def my_listings
         my_listings = Listing.where(creator_id: session[:user_id])
         render json: my_listings, status: :ok
+    end
+
+    def listings_i_claimed
+    my_claims = Listing.all.where.not(creator_id: session[:user_id]).and(Listing.all.where(recipient_id:
+    session[:user_id]))
+    render json: my_claims, status: :ok
     end
 
     private

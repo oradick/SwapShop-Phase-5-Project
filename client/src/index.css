@@ -16,12 +16,27 @@ code {
     monospace;
 }
 
+.logo{
+  border-radius: 5px;
+  /* border: solid 1px #a8daf8 */
+}
+.logo:hover{
+  cursor: pointer;
+  border-radius: 5px;
+  border: solid 2px #459ce4
+}
+
 .header-div{
-  margin: 2%
+  display: flex;
+  margin: 2%;
+  justify-content: space-between;
 }
 
 .nav-div{
+  display: flex;
   width: 98%;
+  gap: 2rem;
+  justify-content: end;
 }
 .login-form{
   display: flex;
@@ -40,4 +55,8 @@ code {
 
 .listing-card{
   padding: .5rem
+}
+
+.button{
+  background-color: solid "#d1efff"
 }

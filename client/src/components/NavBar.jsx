@@ -1,10 +1,10 @@
 //NavBarComponent
-
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { Button, ButtonGroup, Stack, Input } from '@chakra-ui/react'
+import { Button, Image } from '@chakra-ui/react'
 import { AddIcon } from '@chakra-ui/icons'
+import logo from "./assets/SwapShopLogo.jpg"
 
 const NavBar = () => {
     const navigate = useNavigate()
@@ -17,13 +17,13 @@ const NavBar = () => {
 
   return (
     <div className='header-div'>
+        <Image className="logo" src={logo} style={{ height: 90 }} onClick={()=> navigate("/home")}/>
         <div className="nav-div">
-          <Stack direction='row'>
-        <h1 onClick={()=> navigate("/home")}>Logo/Home Button</h1>
-            <Input placeholder="Search Listings" value={searchTerm} onChange={handleSearch}/>
-            <Button width="200px"rightIcon={<AddIcon />} onClick={()=> navigate("/new-listing")}>New Listing</Button>
-            <Button width="200px" onClick={()=> navigate("/my-profile")}>My Profile</Button>
-          </Stack>
+            {/* <Input placeholder="Search Listings" value={searchTerm} onChange={handleSearch}/> */}
+
+            <Button className="button" backgroundColor="#cdeafe" alignSelf="center" width="200px"rightIcon={<AddIcon />} onClick={()=> navigate("/new-listing")}>New Listing</Button>
+            <Button backgroundColor="#cdeafe" alignSelf="center" width="200px" onClick={()=> navigate("/my-profile")}>My Profile</Button>
+          {/* </Stack> */}
         </div>
 
     </div>

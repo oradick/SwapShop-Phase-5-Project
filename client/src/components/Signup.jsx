@@ -80,8 +80,8 @@ const Signup = ({handleLogin}) => {
           <br/>
           <br/>
           <Stack width="200px" margin="auto">
-          <Button onClick={handleSignup}>Submit</Button>
-          <Button onClick={() => navigate("/")}>Back to Log In</Button>
+          <Button backgroundColor="#cdeafe" onClick={handleSignup}>Submit</Button>
+          <Button backgroundColor="#cdeafe" onClick={() => navigate("/")}>Back to Log In</Button>
           </Stack>
 
         </FormControl>

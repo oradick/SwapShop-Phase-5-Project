@@ -64,7 +64,7 @@ const NewListingPage = ({user, listings, setListings}) => {
                 <br/>
               
                 <FormLabel>Upload an Image</FormLabel>
-                <Button>Choose a File</Button>
+                <Button backgroundColor="#cdeafe">Choose a File</Button>
                   <p>or</p>
                 <FormLabel>Image URL</FormLabel>
                 <Input 
@@ -103,7 +103,7 @@ const NewListingPage = ({user, listings, setListings}) => {
                 <br/>
                 <br/>
                 
-                <Button onClick={handleNewListing}>Submit</Button>
+                <Button backgroundColor="#cdeafe" onClick={handleNewListing}>Submit</Button>
             </FormControl>
           </div>
           ) : (

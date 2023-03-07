@@ -60,8 +60,8 @@ const Login = ({handleLogin}) => {
             <br/>
             <br/>
             <Stack width="200px" margin="auto">
-            <Button onClick={handleSubmit}>Log In</Button>
-            <Button onClick={()=>navigate("/signup")}>Create An Account</Button>
+            <Button backgroundColor="#cdeafe" onClick={handleSubmit}>Log In</Button>
+            <Button backgroundColor="#cdeafe" onClick={()=>navigate("/signup")}>Create An Account</Button>
 
             </Stack>
             {errors ? <div>{errors}</div> : null}
