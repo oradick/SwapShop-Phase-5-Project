@@ -6,8 +6,11 @@ import {
   Button,
   Input,
   Heading,
-  Stack
+  Stack,
+  Image
 } from '@chakra-ui/react'
+import logo from "./assets/SwapShopLogo.jpg"
+
 
 
 const Signup = ({handleLogin}) => {
@@ -44,13 +47,16 @@ const Signup = ({handleLogin}) => {
 
   return (
     <div>
+        <Image className="logo" src={logo} style={{ height: 90 }} onClick={()=> navigate("/home")}/>
+        <Heading margin="1rem">Create an Account</Heading>
+      <div className='listing-container-div'>
       <div className='login-form'>
-        <Heading margin="auto">Create an Account</Heading>
         <br/>
         <FormControl>
           <FormLabel>Name</FormLabel>  
           <Input 
             marginBottom=".5rem"
+            backgroundColor="white"
             placeholder='name'
             value={name}
             onChange={(e) => setName(e.target.value)}
@@ -58,6 +64,7 @@ const Signup = ({handleLogin}) => {
           <FormLabel>Username</FormLabel>  
           <Input 
             marginBottom=".5rem"
+            backgroundColor="white"
             placeholder='username'
             value={username}
             onChange={(e)=> setUsername(e.target.value)}
@@ -65,6 +72,7 @@ const Signup = ({handleLogin}) => {
           <FormLabel>Email</FormLabel>
           <Input 
             marginBottom=".5rem"
+            backgroundColor="white"
             placeholder='email'
             value={email}
             onChange={(e)=> setEmail(e.target.value)}
@@ -72,6 +80,7 @@ const Signup = ({handleLogin}) => {
           <FormLabel>Password</FormLabel>
           <Input 
             marginBottom=".5rem"
+            backgroundColor="white"
             type="password" 
             placeholder='password'
             value={password}
@@ -86,6 +95,8 @@ const Signup = ({handleLogin}) => {
 
         </FormControl>
         {errors ? <h1>{errors}</h1> : null}
+      </div>
+
       </div>
     </div>
   )

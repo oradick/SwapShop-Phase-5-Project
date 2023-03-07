@@ -17,7 +17,7 @@ const ListingsIClaimed = ({user}) => {
     console.log("listings i claimed:", listingsIClaimed)
 
   return (
-    <div>
+    <div className='listing-container-div'>
         <Heading marginLeft="1rem" size="md">Listings {user.name} Claimed</Heading>
         <div className='listing-container'>
         {listingsIClaimed.map((listingIClaimed)=>(
@@ -25,9 +25,12 @@ const ListingsIClaimed = ({user}) => {
             <Card  height="400px" key={listingIClaimed.id}>
                 <CardBody>
                 {listingIClaimed.offer ? <Badge colorScheme="cyan">Offer</Badge> : <Badge colorScheme="purple">Request</Badge>}
+                <br/>
+                <br/>
                 <Image height="180px" borderRadius='lg' src={listingIClaimed.image} />
                 <Heading size="md">{listingIClaimed.description}</Heading>
                 <Text>Size: {listingIClaimed.size}</Text>
+                <Text>Offered By: {listingIClaimed.creator.name}</Text>
                 <CardFooter>
                 <Stack margin="auto">
                 <Divider marginTop="5px"/>

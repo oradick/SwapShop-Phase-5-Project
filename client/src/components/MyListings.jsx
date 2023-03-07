@@ -39,7 +39,7 @@ const MyListings = ({user, listings}) => {
 
 
   return (
-    <div>
+    <div className='listing-container-div'>
         <Heading marginLeft="1rem" size="md">{user.name}'s Listings</Heading>
         <div className='listing-container'>
         {myListings.map((myListing)=>(
@@ -47,6 +47,8 @@ const MyListings = ({user, listings}) => {
             <Card  height="400px" key={myListing.id}>
                 <CardBody>
                 {myListing.offer ? <Badge colorScheme="cyan">Offer</Badge> : <Badge colorScheme="purple">Request</Badge>}
+                <br/>
+                <br/>
                 <Image height="180px" borderRadius='lg' src={myListing.image} />
                 <Heading size="md">{myListing.description}</Heading>
                 <Text>Size: {myListing.size}</Text>

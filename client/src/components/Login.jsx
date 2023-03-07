@@ -8,6 +8,9 @@ import {
   Heading,
   Stack
 } from '@chakra-ui/react'
+import { Image } from '@chakra-ui/react'
+import logo from "./assets/SwapShopLogo.jpg"
+
 
 const Login = ({handleLogin}) => {
     const navigate = useNavigate();
@@ -42,17 +45,22 @@ const Login = ({handleLogin}) => {
   return (
     <div>
         {/* <NavBar/> */}
+        <Image className="logo" src={logo} style={{ height: 90 }} onClick={()=> navigate("/home")}/>
         <Heading margin="1rem">Hi, welcome :)</Heading>
+        <div className='listing-container-div'>
+
         <div className='login-form'>
         <FormControl>
             <Input 
               marginBottom=".5rem"
+              backgroundColor="white"
               placeholder='Username'
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             <Input 
               marginBottom=".5rem"
+              backgroundColor="white"
               type='password' placeholder='Password'
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -66,6 +74,7 @@ const Login = ({handleLogin}) => {
             </Stack>
             {errors ? <div>{errors}</div> : null}
         </FormControl>
+        </div>
         </div>
     </div>
   )

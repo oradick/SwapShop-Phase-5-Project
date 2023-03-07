@@ -45,6 +45,13 @@ code {
   width: 33%;
 }
 
+.listing-container-div{
+  background-color: #f3edf7;
+  padding: 1rem;
+  margin: 1rem;
+  border-radius: 5px;
+}
+
 .listing-container{
   display: grid;
   grid-template-columns: repeat(4, 1fr);
