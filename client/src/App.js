@@ -6,6 +6,8 @@ import Home from './components/Home';
 import NewListingPage from './components/NewListingPage';
 import MyProfilePage from './components/MyProfilePage';
 import { useState, useEffect } from "react";
+import { ChakraProvider } from '@chakra-ui/react'
+
 
 function App() {
   const [user, setUser] = useState(null)
@@ -72,9 +74,9 @@ function App() {
   ]);
 
   return(
-    <div>
+    <ChakraProvider>
       <RouterProvider router={router}/>  
-    </div>
+    </ChakraProvider>
   )
 
 }

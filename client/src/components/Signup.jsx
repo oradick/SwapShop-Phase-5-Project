@@ -1,5 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import {
+  FormControl,
+  FormLabel,
+  Button,
+  Input,
+  Heading,
+  Stack
+} from '@chakra-ui/react'
 
 
 const Signup = ({handleLogin}) => {
@@ -27,7 +35,6 @@ const Signup = ({handleLogin}) => {
       if (response.ok){
         response.json().then((user) =>
         handleLogin(user))
-        //go to homepage
         navigate("/home")
       } else {
         response.json().then(json => setErrors(json.errors))
@@ -37,33 +44,49 @@ const Signup = ({handleLogin}) => {
 
   return (
     <div>
-      <h1>create an account</h1>
-      <form className='login-form'>
-        <input 
-          placeholder='name'
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input 
-          placeholder='username'
-          value={username}
-          onChange={(e)=> setUsername(e.target.value)}
-        />
-        <input 
-          placeholder='email'
-          value={email}
-          onChange={(e)=> setEmail(e.target.value)}
-        />
-        <input 
-          type="password" 
-          placeholder='password'
-          value={password}
-          onChange={(e)=> setPassword(e.target.value)}
-        />
-        <button onClick={handleSignup}>submit</button>
-        <button onClick={() => navigate("/")}>back to login</button>
-        {errors ? <div>{errors}</div> : null}
-      </form>
+      <div className='login-form'>
+        <Heading margin="auto">Create an Account</Heading>
+        <br/>
+        <FormControl>
+          <FormLabel>Name</FormLabel>  
+          <Input 
+            marginBottom=".5rem"
+            placeholder='name'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            />
+          <FormLabel>Username</FormLabel>  
+          <Input 
+            marginBottom=".5rem"
+            placeholder='username'
+            value={username}
+            onChange={(e)=> setUsername(e.target.value)}
+          />
+          <FormLabel>Email</FormLabel>
+          <Input 
+            marginBottom=".5rem"
+            placeholder='email'
+            value={email}
+            onChange={(e)=> setEmail(e.target.value)}
+          />
+          <FormLabel>Password</FormLabel>
+          <Input 
+            marginBottom=".5rem"
+            type="password" 
+            placeholder='password'
+            value={password}
+            onChange={(e)=> setPassword(e.target.value)}
+          />
+          <br/>
+          <br/>
+          <Stack width="200px" margin="auto">
+          <Button onClick={handleSignup}>Submit</Button>
+          <Button onClick={() => navigate("/")}>Back to Log In</Button>
+          </Stack>
+
+        </FormControl>
+        {errors ? <h1>{errors}</h1> : null}
+      </div>
     </div>
   )
 }

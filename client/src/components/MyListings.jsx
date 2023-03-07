@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState, useEffect } from "react"
+import { Image, Card, CardBody, Button, Heading, Text, Badge, Divider, Stack, CardFooter  } from '@chakra-ui/react'
 
 
 const MyListings = ({user, listings, setListings}) => {
@@ -39,14 +40,29 @@ const MyListings = ({user, listings, setListings}) => {
 
   return (
     <div>
-        <h1>My Listings {user.name}</h1>
+        <Heading marginLeft="1rem" size="md">{user.name}'s Listings</Heading>
         <div className='listing-container'>
         {myListings.map((myListing)=>(
-            <div className="listing-card" key={myListing.id}>
-                <img src={myListing.image} />
-                <h4>{myListing.description}</h4>
-                <p>Size: {myListing.size}</p>
-                <button onClick={()=> handleDelete(myListing.id)}>Delete</button>
+            <div className='listing-card'>
+            <Card  height="300px" className="listing-card" key={myListing.id}>
+                <CardBody>
+                {myListing.offer ? <Badge colorScheme="cyan">Offer</Badge> : <Badge colorScheme="purple">Request</Badge>}
+                <Image src={myListing.image} />
+                <Heading size="md">{myListing.description}</Heading>
+                <Text>Size: {myListing.size}</Text>
+                <CardFooter>
+                <Stack margin="auto">
+                <Divider marginTop="5px"/>
+                <Button 
+                    width="100px" 
+                    onClick={()=> handleDelete(myListing.id)}
+                    >Delete
+                </Button>
+                </Stack>
+
+                </CardFooter>
+                </CardBody>
+            </Card>
             </div>
         ))}
         </div>

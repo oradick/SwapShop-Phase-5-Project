@@ -1,26 +1,54 @@
 import React from 'react'
+import { Image, Card, CardBody, CardFooter, Button, Heading, Text, Divider, Badge, Stack  } from '@chakra-ui/react'
 
 const ListingCard = ({user, listing}) => {
-  // const claim = () => {
-  //   fetch((`/listing/${listing.id}`), 
-  //   {method: "PATCH",
-    
-  //   })
-      
+  const claim = (id, user) => {
+    fetch((`/listings/${id}`), {
+    method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "creator_id": listing.creator_id,
+        "recipient_id": user,
+        "offer": listing.offer,
+        "image": listing.image,
+        "description": listing.description,
+        "size": listing.size,
+        "keywords": listing.keywords
+      })
+    })
+    .then((response) => response.json())
+    .then((claimedListing) => console.log(claimedListing.recipient.id))
 
-  // }
+  }
 
+  // my patch works, i need to get the button to reflect that the its no longer available and then have the listings that the user has claimed render on their profile page.
 
   return (
     <div className="listing-card">
-      {listing.offer ? <h3>Offer</h3> : <h3>Request</h3>}
-        <img src={listing.image} />
-        <h4>{listing.description}</h4>
-        <p>Size: {listing.size}</p>
-        <p>Posted By: {listing.creator.name}</p>
-        { (listing.creator.id !== listing.recipient.id) || (listing.offer === false) || (listing.creator.id === user.id) ? null : <button 
-        // onClick={claim}
-        >Claim This Item</button>}
+      <Card height="400px">
+        <CardBody>
+      {listing.offer ? <Badge colorScheme="cyan">Offer</Badge> : <Badge colorScheme="purple">Request</Badge>}
+        <Image  height="180px" borderRadius='lg' src={listing.image} />
+        <Heading size='md'>{listing.description}</Heading>
+        <Text>Size: {listing.size}</Text>
+        <Text fontSize='sm'>Posted By: {listing.creator.name}</Text>
+        
+        { (listing.creator.id !== listing.recipient.id) || (listing.offer === false) || (listing.creator.id === user.id) ? null :
+           <CardFooter>
+            <Stack margin="auto">
+            <Divider marginTop="5px"/>
+            <Button 
+              width="100px" 
+              onClick={()=> claim(listing.id, user.id)}
+              >Claim Item
+            </Button>
+            </Stack>
+         </CardFooter>
+        }
+        </CardBody>
+      </Card>
     </div>
   )
 }

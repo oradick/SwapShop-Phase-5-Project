@@ -2,6 +2,14 @@ import React from 'react'
 import NavBar from './NavBar'
 import { useNavigate } from "react-router-dom"
 import { useState } from "react"
+import {
+  FormControl,
+  FormLabel,
+  Select,
+  Button,
+  Input,
+  Heading
+} from '@chakra-ui/react'
 
 
 const NewListingPage = ({user, listings, setListings}) => {
@@ -42,24 +50,24 @@ const NewListingPage = ({user, listings, setListings}) => {
   return (
     <div>
         <NavBar />
-        <h1>Create a Listing</h1>
+        <Heading marginLeft="1rem">Create a Listing</Heading>
         {user ? (
-          <div>
-            <form>
-                <label>Listing Type</label>
-                <select value={listingType} onChange={(e)=> setListingType(e.target.value)}>
+          <div className='login-form'>
+            <FormControl>
+                <FormLabel>Listing Type</FormLabel>
+                <Select value={listingType} onChange={(e)=> setListingType(e.target.value)}>
                   <option value="null">Select a Type</option>
                   <option value="true">Offer</option>
                   <option value="false">Request</option>
-                </select>
+                </Select>
                 
                 <br/>
               
-                <label>Upload an Image</label>
-                <button>Choose a File</button>
+                <FormLabel>Upload an Image</FormLabel>
+                <Button>Choose a File</Button>
                   <p>or</p>
-                <label>Image URL</label>
-                <input 
+                <FormLabel>Image URL</FormLabel>
+                <Input 
                   placeholder='image url'
                   value={imageURL}
                   onChange={(e)=> setImageURL(e.target.value)}
@@ -67,8 +75,8 @@ const NewListingPage = ({user, listings, setListings}) => {
                 
                 <br/>
                 
-                <label>Description</label>
-                <input 
+                <FormLabel>Description</FormLabel>
+                <Input 
                   placeholder='description'
                   value={description}
                   onChange={(e)=> setDescription(e.target.value)}
@@ -76,8 +84,8 @@ const NewListingPage = ({user, listings, setListings}) => {
                 
                 <br/>
                 
-                <label>Size</label>
-                <input 
+                <FormLabel>Size</FormLabel>
+                <Input 
                   placeholder='size'
                   value={size}
                   onChange={(e)=> setSize(e.target.value)}
@@ -85,23 +93,23 @@ const NewListingPage = ({user, listings, setListings}) => {
                 
                 <br/>
                 
-                <label>Keywords</label>
-                <input 
+                <FormLabel>Keywords</FormLabel>
+                <Input 
                   placeholder='keywords'
                   value={keywords}
                   onChange={(e)=> setKeywords(e.target.value)}
                 />
                 
                 <br/>
+                <br/>
                 
-                <button onClick={handleNewListing}>Submit</button>
-                //handle new listing here
-            </form>
+                <Button onClick={handleNewListing}>Submit</Button>
+            </FormControl>
           </div>
           ) : (
             <div>
-            <h2> Please login</h2>
-            <button onClick={()=>navigate("/")}>login</button>
+            <Heading> Please login</Heading>
+            <Button onClick={()=>navigate("/")}>login</Button>
             </div>
           )
         }

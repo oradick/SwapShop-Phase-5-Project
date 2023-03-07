@@ -3,6 +3,7 @@ import NavBar from './NavBar';
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import ListingCard from './ListingCard';
+import { Heading} from '@chakra-ui/react'
 
 const Home = ({user, listings, setListings}) => {
   // const [listings, setListings] = useState([])
@@ -27,10 +28,10 @@ const Home = ({user, listings, setListings}) => {
       <NavBar />
       {user ? (
         <div>
-          <h2>Welcome, {user.name}!</h2>
+          <Heading marginLeft="1rem">Welcome, {user.name}!</Heading>
           <div className='listing-container'>
             {listings.map((listing)=>(
-            <ListingCard key={listing.id} listing={listing} user={user}/>
+            <ListingCard key={listing.id} listing={listing} setListings={setListings} user={user}/>
              ))}
           </div>
         </div>
