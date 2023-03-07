@@ -49,7 +49,7 @@ const MyListings = ({user, listings}) => {
                 {myListing.offer ? <Badge colorScheme="cyan">Offer</Badge> : <Badge colorScheme="purple">Request</Badge>}
                 <br/>
                 <br/>
-                <Image height="180px" borderRadius='lg' src={myListing.image} />
+                <Image marginLeft="2rem" width="50%" height="40%" borderRadius='lg' src={myListing.image} />
                 <Heading size="md">{myListing.description}</Heading>
                 <Text>Size: {myListing.size}</Text>
                 <CardFooter>

@@ -53,15 +53,15 @@ code {
 }
 
 .listing-container{
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(auto, 1fr);
-  width: 98%;
-  margin: 1%
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 2rem;
 }
 
 .listing-card{
-  padding: .5rem
+  padding: .5rem;
+  width: 20rem;
 }
 
 .button{

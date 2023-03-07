@@ -30,8 +30,8 @@ const Home = ({user, listings, setListings}) => {
       {user ? (
         <div>
           <NavBar />
-        <div className='listing-container-div'>
           <Heading marginLeft="1rem">Welcome, {user.name}!</Heading>
+        <div className='listing-container-div'>
           <div className='listing-container'>
             {listings.map((listing)=>(
             <ListingCard key={listing.id} listing={listing} setListings={setListings} user={user}/>

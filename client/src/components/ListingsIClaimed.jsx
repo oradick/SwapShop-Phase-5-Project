@@ -27,7 +27,7 @@ const ListingsIClaimed = ({user}) => {
                 {listingIClaimed.offer ? <Badge colorScheme="cyan">Offer</Badge> : <Badge colorScheme="purple">Request</Badge>}
                 <br/>
                 <br/>
-                <Image height="180px" borderRadius='lg' src={listingIClaimed.image} />
+                <Image marginLeft="2rem" width="50%" height="40%" borderRadius='lg' src={listingIClaimed.image} />
                 <Heading size="md">{listingIClaimed.description}</Heading>
                 <Text>Size: {listingIClaimed.size}</Text>
                 <Text>Offered By: {listingIClaimed.creator.name}</Text>
