@@ -33,7 +33,7 @@ const ListingCard = ({user, listing}) => {
 
   return (
     <div className="listing-card">
-      <Card height="400px">
+      <Card height="410px">
         <CardBody>
       {listing.offer ? <Badge colorScheme="cyan">Offer</Badge> : <Badge colorScheme="purple">Request</Badge>}
         <br/>
@@ -48,23 +48,29 @@ const ListingCard = ({user, listing}) => {
             <Stack margin="auto">
             <Divider marginTop="5px"/>
             { unclaimed ? (
-            <Button 
-              width="100px"
-              backgroundColor="#cdeafe" 
-              onClick={()=> claim(listing.id, user.id)}
-              >Claim Item
-            </Button>
-            ) : (
-              <Button 
-              width="100px"
-              >Claimed
-            </Button>  
-            )
-
+                <Button 
+                  width="100px"
+                  backgroundColor="#cdeafe" 
+                  onClick={()=> claim(listing.id, user.id)}
+                  >Claim Item
+                </Button>
+              ) : (
+                <Button 
+                width="100px"
+                >Claimed
+                </Button>  
+              )
             }
             </Stack>
          </CardFooter>
         }
+        <CardFooter>
+          <Stack margin="auto">
+            <Divider marginTop="5px"/>
+              {listing.offer ? null : 
+              <Button backgroundColor="#dbcae8">View Comments</Button>}
+          </Stack>
+        </CardFooter>
         </CardBody>
       </Card>
     </div>

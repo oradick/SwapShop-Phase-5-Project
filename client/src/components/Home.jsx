@@ -32,13 +32,14 @@ const Home = ({user, listings, setListings}) => {
   //   return listing.offer === listingType
   // })
   // console.log("listingFilter", listingFilter)
-  
 
+  const filteredListings = homeListings.filter((listing)=>{
+    return (listing.description.toLowerCase()).includes(searchTerm.toLowerCase())||(listing.keywords.toLowerCase()).includes(searchTerm.toLowerCase())
+  })
+  
   if (homeListings.length === 0) return null
   console.log(homeListings)
   
-  
-
   return (
     <div>
       {user ? (
@@ -52,7 +53,7 @@ const Home = ({user, listings, setListings}) => {
               listingType={listingType}
               setListingType={setListingType}/>
             <div className='listing-container'>
-              {homeListings.map((listing)=>(
+              {filteredListings.map((listing)=>(
               <ListingCard key={listing.id} listing={listing} setListings={setListings} user={user}/>
                ))}
             </div>
