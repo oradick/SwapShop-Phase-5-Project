@@ -34,16 +34,17 @@ function App() {
   //fetch all listings
   const [listings, setListings] = useState([])
   
-  useEffect(() => {
-    fetch("/listings")
-    .then(response => response.json())
-    .then((data)=>{
-      setListings(data);
-    });
-  }, []);
+  // might be able to delete this fetch because I want to render only available listings on the home page
+  // useEffect(() => {
+  //   fetch("/listings")
+  //   .then(response => response.json())
+  //   .then((data)=>{
+  //     setListings(data);
+  //   });
+  // }, []);
   
-  if (listings.length === 0) return null
-  console.log(listings)
+  // if (listings.length === 0) return null
+  // console.log(listings)
 
   const router = createBrowserRouter([
     {

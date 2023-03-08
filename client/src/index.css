@@ -67,3 +67,12 @@ code {
 .button{
   background-color: solid "#d1efff"
 }
+
+.search-filter{
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  margin-top: 1rem;
+}

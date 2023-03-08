@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   #sign-up route
   post "/signup", to: "users#create"
 
+  get "/listings-home", to: "listings#listings_home"
   get "/my-listings", to: "listings#my_listings"
   get "/listings-i-claimed", to: "listings#listings_i_claimed"
 end

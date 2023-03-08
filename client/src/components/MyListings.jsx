@@ -3,7 +3,7 @@ import { useState, useEffect } from "react"
 import { Image, Card, CardBody, Button, Heading, Text, Badge, Divider, Stack, CardFooter  } from '@chakra-ui/react'
 
 
-const MyListings = ({user, listings}) => {
+const MyListings = ({user}) => {
     const [myListings, setMyListings] = useState([])
   
     useEffect(() => {
@@ -11,7 +11,6 @@ const MyListings = ({user, listings}) => {
       .then(response => response.json())
       .then((data)=>{
         setMyListings(data);
-        console.log("all listings:", listings)
       });
     }, []);
 
