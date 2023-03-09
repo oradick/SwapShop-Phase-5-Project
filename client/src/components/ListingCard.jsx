@@ -1,10 +1,34 @@
-import React, {useState} from 'react'
-import { Image, Card, CardBody, CardFooter, Button, Heading, Text, Divider, Badge, Stack  } from '@chakra-ui/react'
+import React, {useState, useEffect} from 'react'
+import { 
+  Image, Card, CardBody, CardFooter, Button, Heading, Text, Divider, Badge, Stack, Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, useDisclosure, Input, FormControl, FormLabel  } from '@chakra-ui/react'
 
 const ListingCard = ({user, listing}) => {
+  const [comments, setComments] = useState([])
+
+  // states for opening and closing comment Modal form
+  const { isOpen, onOpen, onClose } = useDisclosure()
   
+  // state for claim button on offers
   const [unclaimed, setUnclaimed] = useState(true)
 
+  // fetch for comments
+  useEffect(() =>{
+    fetch("/comments")
+    .then(response => response.json())
+    .then((data)=>{
+      setComments(data);
+    }); 
+  }, [])
+  
+  if (comments.length === 0) return null
+  console.log(comments);
+
+  // filter for comments that match a particular listing
+  const filteredComments = comments.filter((comment) =>{
+    return (comment.listing.id === listing.id)
+  })
+
+  // PATCH for claiming listings
   const claim = (id, user) => {
     fetch((`/listings/${id}`), {
     method: "PATCH",
@@ -26,10 +50,7 @@ const ListingCard = ({user, listing}) => {
       setUnclaimed(!unclaimed)
       console.log(claimedListing.recipient.id);
     });
-
   }
-
-  // my patch works, i need to get the button to reflect that the its no longer available and then have the listings that the user has claimed render on their profile page.
 
   return (
     <div className="listing-card">
@@ -50,7 +71,8 @@ const ListingCard = ({user, listing}) => {
             { unclaimed ? (
                 <Button 
                   width="100px"
-                  backgroundColor="#cdeafe" 
+                  backgroundColor="#c4f1f9" 
+                  color="#167289"
                   onClick={()=> claim(listing.id, user.id)}
                   >Claim Item
                 </Button>
@@ -64,11 +86,39 @@ const ListingCard = ({user, listing}) => {
             </Stack>
          </CardFooter>
         }
+        {/* button and modal for comment pop-up */}
         <CardFooter>
           <Stack margin="auto">
             <Divider marginTop="5px"/>
               {listing.offer ? null : 
-              <Button backgroundColor="#dbcae8">View Comments</Button>}
+              <>
+              <Button backgroundColor="#e9d9fd" color="#4d3d83" onClick={onOpen}>View Comments</Button>
+              <Modal onClose={onClose} isOpen={isOpen} isCentered>
+                <ModalOverlay/>
+                <ModalContent>
+                  <ModalHeader>All Comments</ModalHeader>
+                    <ModalCloseButton/>
+                    <ModalBody>
+                      {filteredComments.map((comment) =>(
+                      <div className="comments">
+                      <br/>
+                      <Text color="#b695d0" as='sup'>{comment.user.name}</Text>
+                      <Text>{comment.description}</Text>                      
+                      </div>
+                      )) 
+                      }
+                      <br/>
+                      <FormControl>
+                      <Input placeholder="Comment..."/>
+                      </FormControl>
+                    </ModalBody>
+                    <ModalFooter>
+                      <Button>Post</Button>
+                    </ModalFooter>
+                </ModalContent>
+              </Modal>
+              </>
+              }              
           </Stack>
         </CardFooter>
         </CardBody>

@@ -40,6 +40,7 @@ const Home = ({user, listings, setListings}) => {
   if (homeListings.length === 0) return null
   console.log(homeListings)
   
+
   return (
     <div>
       {user ? (

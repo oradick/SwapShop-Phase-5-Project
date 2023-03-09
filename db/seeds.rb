@@ -22,6 +22,7 @@ Listing.create(creator_id: 3, recipient_id: 3, image: "https://www.si.com/review
 
 puts "🌱 Seeding comments..."
 Comment.create(listing_id: 5, user_id: 1, description: "I have one! only wore it once.")
+Comment.create(listing_id: 5, user_id: 5, description: "I have one too.")
 Comment.create(listing_id: 8, user_id: 2, description: "Omg good luck! i'm not using mine anymore :)")
 
 # This file should contain all the record creation needed to seed the database with its default values.

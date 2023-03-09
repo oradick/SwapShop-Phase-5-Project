@@ -76,3 +76,11 @@ code {
   margin-bottom: 2rem;
   margin-top: 1rem;
 }
+
+.chakra-input{
+  --chakra-colors-chakra-placeholder-color: #dbcae8;
+}
+
+/* .chakra-select{
+  color: #dbcae8
+} */
