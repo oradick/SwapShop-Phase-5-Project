@@ -4,6 +4,8 @@ import {
 
 const ListingCard = ({user, listing}) => {
   const [comments, setComments] = useState([])
+  const [newComment, setNewComment] = useState("")
+  const [newImage, setNewImage] = useState("")
 
   // states for opening and closing comment Modal form
   const { isOpen, onOpen, onClose } = useDisclosure()
@@ -23,6 +25,27 @@ const ListingCard = ({user, listing}) => {
   if (comments.length === 0) return null
   console.log(comments);
 
+  // POST for new comment
+  const handleNewComment = (e) => {
+
+    fetch("/comments", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        "listing_id": listing.id,
+        "user_id": user.id,
+        "image": newImage,
+        "description": newComment
+      })
+    })
+    .then(response => response.json())
+    .then((newComment) => {
+      setComments([...comments, newComment])
+      setNewComment("")
+    })
+  }
   // filter for comments that match a particular listing
   const filteredComments = comments.filter((comment) =>{
     return (comment.listing.id === listing.id)
@@ -100,7 +123,7 @@ const ListingCard = ({user, listing}) => {
                     <ModalCloseButton/>
                     <ModalBody>
                       {filteredComments.map((comment) =>(
-                      <div className="comments">
+                      <div key={comment.id}className="comments">
                       <br/>
                       <Text color="#b695d0" as='sup'>{comment.user.name}</Text>
                       <Text>{comment.description}</Text>                      
@@ -109,11 +132,14 @@ const ListingCard = ({user, listing}) => {
                       }
                       <br/>
                       <FormControl>
-                      <Input placeholder="Comment..."/>
+                      <Input value={newComment} placeholder="Comment..."
+                      onChange={(e)=> 
+                      {setNewComment(e.target.value)
+                      console.log(newComment)}}/>
                       </FormControl>
                     </ModalBody>
                     <ModalFooter>
-                      <Button>Post</Button>
+                      <Button onClick={handleNewComment}>Post</Button>
                     </ModalFooter>
                 </ModalContent>
               </Modal>
