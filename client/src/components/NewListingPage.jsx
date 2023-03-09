@@ -9,9 +9,12 @@ import {
   Button,
   Input,
   Heading,
-  Image
+  Image,
+  Stack
 } from '@chakra-ui/react'
 import logo from "./assets/SwapShopLogo.jpg"
+import flowerLogo from "./assets/p5 SwapShopLogo flower only.png"
+
 
 
 
@@ -55,9 +58,10 @@ const NewListingPage = ({user, listings, setListings}) => {
         {user ? (
           <div>
             <NavBar />
-            <Heading marginLeft="1rem">Create a Listing</Heading>
-          <div className='listing-container-div'>
+          <div className='login-container-div'>
           <div className='login-form'>
+          <Image src={flowerLogo} height="9rem" width="6rem" margin="auto"/>
+          <Heading margin="auto" marginBottom="1rem">Create a Listing</Heading>
             <FormControl>
                 <FormLabel>Listing Type</FormLabel>
                 <Select backgroundColor="white" value={listingType} onChange={(e)=> setListingType(e.target.value)}>
@@ -111,8 +115,10 @@ const NewListingPage = ({user, listings, setListings}) => {
                 
                 <br/>
                 <br/>
-                
-                <Button backgroundColor="#cdeafe" onClick={handleNewListing}>Submit</Button>
+                <Stack width="200px" margin="auto">
+
+                <Button  margin="auto" backgroundColor="#cdeafe" onClick={handleNewListing}>Submit</Button>
+                </Stack>
             </FormControl>
           </div>
           </div>
