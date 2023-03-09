@@ -13,8 +13,8 @@ const Home = ({user, listings, setListings}) => {
   const [homeListings, setHomeListings] = useState([])
 
   // states for search/filter
+  const [listingType, setListingType] = useState("all")
   const [searchTerm, setSearchTerm] = useState("")
-  const [listingType, setListingType] = useState()
 
 
   
@@ -26,14 +26,21 @@ const Home = ({user, listings, setListings}) => {
     });
   }, []);
 
-  // attempt at filtering by offer or request
-  // const listingFilter = homeListings.filter((listing)=>{
-  //   if (listingType == "all") return true;
-  //   return listing.offer === listingType
-  // })
-  // console.log("listingFilter", listingFilter)
 
-  const filteredListings = homeListings.filter((listing)=>{
+
+  // selectedCategoryFilter = homeListings.filter
+  // searchFilter = selectedCategoryFilter.filter
+  const selectedCategoryFilter = homeListings.filter((listing)=>{
+    if (listingType === "all") return true
+    // listing.offer === true || listing.offer === false;
+    else if (listingType === "true") return listing.offer === true;
+    else return listing.offer === false;
+
+  })
+
+
+  // THIS FILTER WORKS, I JUST NEED TO PLUG IN SELECTEDCATEGORYFILTER VARIABLE SO I'M FILTERING IN LAYERS
+  const filteredListings = selectedCategoryFilter.filter((listing)=>{
     return (listing.description.toLowerCase()).includes(searchTerm.toLowerCase())||(listing.keywords.toLowerCase()).includes(searchTerm.toLowerCase())
   })
   

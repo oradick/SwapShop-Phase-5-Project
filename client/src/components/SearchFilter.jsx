@@ -18,8 +18,8 @@ const SearchFilter = ({listingType, setListingType, searchTerm, setSearchTerm,})
     <div className='search-filter'>
             <Select width="20rem" backgroundColor="white" value={listingType} onChange={handleTypeFilter}>
                 <option value="all">All</option>
-                <option value={true}>Offers</option>
-                <option value={false}>Requests</option>
+                <option value="true">Offers</option>
+                <option value="false">Requests</option>
             </Select>
             <Input placeholder="Search Listings" width="50rem" backgroundColor="white" value={searchTerm} onChange={handleSearch}/>
     </div>
