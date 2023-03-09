@@ -28,7 +28,7 @@ const NewListingPage = ({user, listings, setListings}) => {
   const [size, setSize] = useState("")
   const [keywords, setKeywords] = useState("")
 
-
+  // POST a new listing
   const handleNewListing = (e) => {
     e.preventDefault();
     fetch("/listings", {

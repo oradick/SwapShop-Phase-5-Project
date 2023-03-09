@@ -27,9 +27,9 @@ const Signup = ({handleLogin}) => {
   const [password, setPassword] = useState("")
   const [errors, setErrors] = useState([])
 
+  //POST new user, reroute to home page, sets current user to me
   const handleSignup = (e) => {
     e.preventDefault();
-    //POST new user and
     fetch("/signup", {
       method: "POST",
       headers: {

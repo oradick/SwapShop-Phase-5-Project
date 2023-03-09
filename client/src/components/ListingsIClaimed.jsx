@@ -5,6 +5,7 @@ import { Image, Card, CardBody, Button, Heading, Text, Badge, Divider, Stack, Ca
 const ListingsIClaimed = ({user}) => {
     const [listingsIClaimed, setListingsIClaimed] = useState([])
 
+    // fetch for listings where recipient id is my id
     useEffect(()=>{
         fetch("/listings-i-claimed")
         .then(response => response.json())

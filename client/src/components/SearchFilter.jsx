@@ -4,11 +4,12 @@ import {  Button, Input, FormControl, Select } from '@chakra-ui/react'
 
 const SearchFilter = ({listingType, setListingType, searchTerm, setSearchTerm,}) => {
 
+    // sets state of Select filter
     const handleTypeFilter = (e) => {
         setListingType(e.target.value)
         console.log(listingType)
     }
-    
+    // sets state of search bar filter
     const handleSearch = (e) => {
         setSearchTerm(e.target.value)
         console.log(searchTerm)

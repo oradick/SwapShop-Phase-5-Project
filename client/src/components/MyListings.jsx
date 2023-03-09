@@ -6,6 +6,7 @@ import { Image, Card, CardBody, Button, Heading, Text, Badge, Divider, Stack, Ca
 const MyListings = ({user}) => {
     const [myListings, setMyListings] = useState([])
   
+    // fetch for listings there creator id is my id
     useEffect(() => {
       fetch("/my-listings")
       .then(response => response.json())
@@ -17,6 +18,7 @@ const MyListings = ({user}) => {
     if (myListings.length === 0) return null
     console.log("my listings:", myListings)
 
+    // DELETE for my listings
     const handleDelete = (id) => {
         fetch(`/listings/${id}`, {
             method: "DELETE",
@@ -32,9 +34,6 @@ const MyListings = ({user}) => {
             })
         )
     }
-
-
-    // my delete works! seb helped with the  string interpolation of the fetch url- defining id within the map below. I now need to setUpdatedListings within the delete, and plug that into the og my-listings fetch so that the page rerenders correctly upon a deletion 
 
 
   return (

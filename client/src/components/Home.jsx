@@ -16,8 +16,7 @@ const Home = ({user, listings, setListings}) => {
   const [listingType, setListingType] = useState("all")
   const [searchTerm, setSearchTerm] = useState("")
 
-
-  
+  // fetch requests and available listings
   useEffect(() => {
     fetch("/listings-home")
     .then(response => response.json())
@@ -25,8 +24,6 @@ const Home = ({user, listings, setListings}) => {
       setHomeListings(data);
     });
   }, []);
-
-
 
   // selectedCategoryFilter = homeListings.filter
   // searchFilter = selectedCategoryFilter.filter
@@ -37,7 +34,6 @@ const Home = ({user, listings, setListings}) => {
     else return listing.offer === false;
 
   })
-
 
   // THIS FILTER WORKS, I JUST NEED TO PLUG IN SELECTEDCATEGORYFILTER VARIABLE SO I'M FILTERING IN LAYERS
   const filteredListings = selectedCategoryFilter.filter((listing)=>{

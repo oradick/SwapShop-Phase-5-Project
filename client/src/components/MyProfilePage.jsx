@@ -11,6 +11,7 @@ import logo from "./assets/SwapShopLogo.jpg"
 const MyProfilePage = ({user, handleLogout, listings, setListings}) => {
     const navigate = useNavigate()
 
+    // log out function
     const handleLogoutBtn = () => {
       fetch("/logout",{
         method: "DELETE",
