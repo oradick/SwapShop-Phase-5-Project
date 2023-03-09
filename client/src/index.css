@@ -52,6 +52,17 @@ code {
   border-radius: 5px;
 }
 
+.login-container-div{
+  display: flex;
+  justify-content: center;
+  background-color: #f3edf7;
+  padding: 1rem;
+  margin: 1rem;
+  margin-left: 12rem;
+  margin-right: 12rem;
+  border-radius: 5px;
+}
+
 .listing-container{
   display: flex;
   flex-wrap: wrap;

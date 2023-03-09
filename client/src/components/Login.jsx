@@ -6,10 +6,12 @@ import {
   Button,
   Input,
   Heading,
-  Stack
+  Stack,
+  Text
 } from '@chakra-ui/react'
 import { Image } from '@chakra-ui/react'
 import logo from "./assets/SwapShopLogo.jpg"
+import flowerLogo from "./assets/p5 SwapShopLogo flower only.png"
 
 
 const Login = ({handleLogin}) => {
@@ -46,10 +48,12 @@ const Login = ({handleLogin}) => {
     <div>
         {/* <NavBar/> */}
         <Image className="logo" src={logo} style={{ height: 90 }} onClick={()=> navigate("/home")}/>
-        <Heading margin="1rem">Hi, welcome :)</Heading>
-        <div className='listing-container-div'>
-
+        <div className='login-container-div'>
         <div className='login-form'>
+        <Image src={flowerLogo} height="9rem" width="6rem" margin="auto"/>
+        <Heading margin="auto" marginBottom="1rem">Log In</Heading>
+        <Text fontSize="lg" margin="auto" marginBottom="1rem">Hi, welcome back :)</Text>
+
         <FormControl>
             <Input 
               marginBottom=".5rem"

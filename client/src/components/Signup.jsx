@@ -7,9 +7,12 @@ import {
   Input,
   Heading,
   Stack,
-  Image
+  Image,
+  Text
 } from '@chakra-ui/react'
 import logo from "./assets/SwapShopLogo.jpg"
+import flowerLogo from "./assets/p5 SwapShopLogo flower only.png"
+
 
 
 
@@ -48,9 +51,12 @@ const Signup = ({handleLogin}) => {
   return (
     <div>
         <Image className="logo" src={logo} style={{ height: 90 }} onClick={()=> navigate("/home")}/>
-        <Heading margin="1rem">Create an Account</Heading>
-      <div className='listing-container-div'>
+      <div className='login-container-div'>
       <div className='login-form'>
+      <Image src={flowerLogo} height="9rem" width="6rem" margin="auto"/>
+
+        <Heading margin="auto" marginBottom="1rem">Create an Account</Heading>
+        <Text fontSize="lg" margin="auto" >Please fill out the form below</Text>
         <br/>
         <FormControl>
           <FormLabel>Name</FormLabel>  
